@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User History</title>
+    <link rel="stylesheet" href="../css/Phill.css">
+
+  </head>
+  <body>
+    <header class="top-nav">
+      <div class="logo">
+        <img src="../images/mustlogo.png" alt="MUST logo" /> MUST Car Booking
+      </div>
+      <nav class="nav-links">
+        <a href="#">Home</a>
+        <a href="#">My Bookings</a>
+        <a href="#">Edit Profile</a>
+        <a href="#">I don't know</a>
+      </nav>
+      <div class="user-profile">
+        <div class="user">
+          <img src="../images/mustlogo.png" alt="user" />
+          <span><b>Phillip Mwamondwe</b> <br /><small>Student</small></span>
+        </div>
+      </div>
+    </header>
+    <section class="stats">
+      <div class="card">Total Bookings<br /><b>12</b></div>
+      <div class="card">Completed<br /><b>8</b></div>
+      <div class="card">Upcoming<br /><b>3</b></div>
+      <div class="card">Cancelled<br /><b>1</b></div>
+    </section>
+    <main class="main-content">
+      <div class="table-controls">
+        <input type="text" placeholder="Search booking..." />
+        <select>
+          <option>All</option>
+          <option>Completed</option>
+          <option>Upcoming</option>
+          <option>Cancelled</option>
+        </select>
+      </div>
+      <table class="booking-table">
+        <tr>
+          <th>Booking-ID</th>
+          <th>Car</th>
+          <th>Booking Date</th>
+          <th>Return Date</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+        <tr>
+          <td>
+            <span class="status completed">Completed</span><br />
+            <b>#MUST-2026-0042</b><br />
+            <small>Booked on: 12 Apr 2026</small>
+          </td>
+          <td class="car-card">
+            <img src="../images/Corrola.png" class="car-img" />
+            <div>
+              Toyota Corolla Altis<br />
+              <small>2023 Automatic Petrol</small><br />
+              <span class="plate">ABC-123</span>
+            </div>
+          </td>
+          <td>
+            24 Apr 2026<br />
+            09:00 AM<br />
+            <small>MUST Main Campus</small>
+          </td>
+          <td>
+            26 Apr 2026<br />
+            06:00 PM<br />
+            <small>MUST Main Campus</small>
+          </td>
+          <td>
+            <span class="status returned">Returned</span>
+          </td>
+          <td>
+            <button class="btn">Book Again</button><br />
+            <button class="btn-outline">Invoice</button>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <span class="status upcoming">Upcoming</span><br />
+            <b>#MUST-2026-0061</b><br />
+            <small>Booked on: 12 Apr 2026</small>
+          </td>
+          <td class="car-card">
+            <img
+              src="../images/Honda.png"
+              class="car-img"
+              alt="Honda HR-V image"
+            />
+            <div>
+              Honda HR-V <br />
+              <small>2023 Automatic Petrol</small><br />
+              <span class="plate">XYZ-789</span>
+            </div>
+          </td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>
+            <button class="btn">Book Again</button><br />
+            <button class="btn-outline">Cancel</button>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <span class="status cancelled">Cancelled</span><br />
+            <b>#MUST-2026-0041</b><br />
+            <small>Booked on: 30 Apr 2026</small>
+          </td>
+          <td class="car-card">
+            <img
+              src="../images/Fortuner.png"
+              class="car-img"
+              alt="Toyota Fortuner image"
+            /><br />
+            <div>
+              Toyota Fortuner <br />
+              <small>2024 Manual Diesel</small><br />
+              <span class="plate">KA-4096</span>
+            </div>
+          </td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>
+            <button class="btn">Book Again</button><br />
+            <button class="btn-outline">Invoice</button>
+          </td>
+        </tr>
+      </table>
+    </main>
+  </body>
+</html>
