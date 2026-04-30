@@ -1,0 +1,75 @@
+DOCTYPE html>
+<html>
+    <head>
+        <title>Car Booking-User Dashboard</title>
+        <link rel="stylesheet" href="../css/styles.css">
+    </head>
+
+    
+
+    <body>
+       <hr class="lines"><p class="user_tittle"><img scr="" alt="logo of must car booking system" id="logo">User Booking History </p><hr class="lines" > 
+        
+        <div class="tab_bar">
+          <a href="Home.php" class="tabs">Home</a>&nbsp;&nbsp;&nbsp;&nbsp; 
+          <a href="User.html" class="tabs">User_Dashboard</a>&nbsp;&nbsp;&nbsp;&nbsp; 
+          <a href="Report.php" class="tabs">Report</a>&nbsp;&nbsp;
+          <a href="Logout.php" class="tabs">Logout</a>
+         
+           
+        </div><hr>
+
+    
+
+        <hr><div class="container">
+                    <form>
+                        <fieldset>
+                            <legend>User Profile</legend>
+                                <label> Fullname:</label>
+                                <input type="text "  placeholder="Enter your full name" required>
+                                <label>Phone number:</label>
+                                <input type="number" placeholder="Enter phone number" required >
+                                <label>Email:</label>
+                                <input type="text"  placeholder="Enter email address">
+                        </fieldset>
+                        <fieldset>
+                            <legend> Journery Details </legend>
+                                <label for="destination">Destination:</label>
+                                <input type="text" name="pickup location" placeholder="e.g., City Campus" required>
+                                <label for="purpose">Purpose of journery: </label>
+                                <input type="textarea" name="purpose" required  placeholder="Educational/Personal" ><br>
+                                <label for="passengers">Capacity(number of passengers): </label>
+                                <input type="number" min="1" name="passengers"  required><br>
+                                <label for="date">Date required:</label> 
+                                <input type="date" name="date" required>
+                                <label for="date back">Date expected back:</label> 
+                                <input type="date" name="date back" required><br>
+                                <label for="time">Time required: </label>
+                                <input type="time" name="time"  required>
+                                <label for="time back">Time expected back: </label>
+                                <input type="time" name="time back"  required><br>
+                        </fieldset>
+
+                    
+                    </form>
+                </div><hr>
+
+                <hr><div class="right"> 
+            
+                        <p class="status">
+                            available
+
+                        </p>
+                        <p class="status" >
+                        not available
+                        </p>
+                        <p class="status">
+                         Booking cancelled
+                        </p>
+                    </div><hr>
+                </div><hr>
+        
+    </body>
+	
+    
+</html>

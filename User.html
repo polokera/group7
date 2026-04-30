@@ -1,0 +1,327 @@
+<DOCTYPE html>
+<html>
+    <head>
+        <title>Car Booking-User Dashboard</title>
+
+        
+         <style>
+        
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                background: rgb(231, 231, 226);
+                color: rgb(15, 15, 15);
+            }
+
+        
+            .lines {
+                height: 3px;
+                background: linear-gradient(90deg, #2c3e50, #3498db, #2c3e50);
+                border: none;
+                margin: 0;
+            }
+
+            hr:not(.lines) {
+                border: none;
+                border-top: 1px solid #ddd;
+                margin: 10px 0;
+            }
+
+        
+            .user_tittle {
+                font-size: 28px;
+                font-weight: bold;
+                text-align: left;
+                padding: 20px 0;
+                background: linear-gradient(135deg, #1a5276, #2980b9);
+                color: white;
+                margin: 0;
+                letter-spacing: 1px;
+            }
+
+            #logo {
+                display: inline-block;
+                width: 32px;
+                height: 32px;
+                background: #f39c12;
+                border-radius: 50%;
+                margin-right: 10px;
+                vertical-align: middle;
+                content: "🚗";
+                font-size: 20px;
+                line-height: 32px;
+                text-align: left;
+            }
+
+            .tab_bar {
+                background: white;
+                padding: 15px 20px;
+                text-align: right;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            }
+
+            .tabs {
+                text-decoration: none;
+                color: #2c3e50;
+                font-weight: 600;
+                padding: 8px 16px;
+                margin: 0 5px;
+                border-radius: 25px;
+                transition: all 0.3s;
+                display: inline-block;
+            }
+
+            .tabs:hover {
+                background: #3498db;
+                color: white;
+                transform: translateY(-2px);
+            }
+
+        
+            .container {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 20px;
+                padding: 25px;
+                max-width: 1300px;
+                margin: 0 auto;
+            }
+
+            .left {
+                flex: 2;
+                min-width: 280px;
+                background: white;
+                border-radius: 12px;
+                padding: 20px;
+                box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            }
+
+            .right {
+                flex: 1;
+                min-width: 250px;
+                background: white;
+                border-radius: 12px;
+                padding: 20px;
+                box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            }
+
+        
+            .left p:first-child {
+                font-size: 22px;
+                font-weight: bold;
+                color: #1a5276;
+                margin-bottom: 20px;
+                padding-bottom: 10px;
+                border-bottom: 3px solid #3498db;
+                display: inline-block;
+            }
+
+            fieldset {
+                border: 1px solid #ddd;
+                border-radius: 10px;
+                padding: 18px;
+                margin-bottom: 20px;
+                background: #fefefe;
+            }
+
+            legend {
+                font-weight: bold;
+                color: #1a5276;
+                padding: 0 12px;
+                font-size: 16px;
+            }
+
+            label {
+                display: inline-block;
+                width: 180px;
+                margin: 10px 0 5px 0;
+                font-weight: 500;
+                color: #555;
+            }
+
+            input {
+                width: calc(100% - 190px);
+                padding: 8px 12px;
+                border: 1px solid #ccc;
+                border-radius: 6px;
+                font-size: 14px;
+                transition: border 0.3s;
+                margin: 5px 0;
+            }
+
+            input:focus {
+                outline: none;
+                border-color: #3498db;
+                box-shadow: 0 0 5px rgba(52,152,219,0.3);
+            }
+
+            /* For responsive: make labels and inputs stack on small screens */
+            @media (max-width: 768px) {
+                label {
+                    display: block;
+                    width: 100%;
+                }
+                input {
+                    width: 100%;
+                }
+            }
+
+            button {
+                padding: 10px 24px;
+                margin: 10px 10px 0 0;
+                border: none;
+                border-radius: 6px;
+                font-size: 14px;
+                font-weight: bold;
+                cursor: pointer;
+                transition: all 0.3s;
+            }
+
+            button[type="reset"] {
+                background: #95a5a6;
+                color: white;
+            }
+
+            button[type="reset"]:hover {
+                background: #7f8c8d;
+                transform: scale(1.02);
+            }
+
+            button[type="submit"] {
+                background: #27ae60;
+                color: white;
+            }
+
+            button[type="submit"]:hover {
+                background: #229954;
+                transform: scale(1.02);
+            }
+
+            /* Right side status boxes */
+            .right p {
+                margin: 15px 0;
+                padding: 15px;
+                border-radius: 8px;
+                font-weight: bold;
+                text-align: center;
+                transition: transform 0.2s;
+            }
+
+            .right p:hover {
+                transform: translateX(5px);
+            }
+
+            .right p:first-of-type {
+                background: #d5f5e3;
+                color: #1e8449;
+                border-left: 5px solid #27ae60;
+            }
+
+            .right p:nth-of-type(2) {
+                background: #fadbd8;
+                color: #c0392b;
+                border-left: 5px solid #e74c3c;
+            }
+
+            .right p:nth-of-type(3) {
+                background: #f9e79f;
+                color: #7d6608;
+                border-left: 5px solid #f1c40f;
+            }
+
+            /* Simple responsive adjustments */
+            @media (max-width: 800px) {
+                .container {
+                    flex-direction: column;
+                }
+                .tab_bar {
+                    display: flex;
+                    flex-wrap: wrap;
+                    justify-content: center;
+                    gap: 5px;
+                }
+                .tabs {
+                    margin: 5px;
+                }
+            }
+        </style>
+    </head>
+
+    
+
+    <body>
+       <hr class="lines"><p class="user_tittle"><img scr="" alt="logo of must car booking system" id="logo"> User-Dashboard</p><hr class="lines" > 
+        
+        <div class="tab_bar">
+          <a href="Home.php" class="tabs">Home</a>&nbsp;&nbsp;&nbsp;&nbsp;
+          <a href="UserHistory.html" class="tabs">My Booking History</a>&nbsp;&nbsp;&nbsp;&nbsp;  
+          <a href="Report.php" class="tabs">Report</a>&nbsp;&nbsp;
+          <a href="Logout.php" class="tabs">Logout</a>
+         
+           
+        </div><hr>
+
+    
+
+        <hr><div class="container">
+                <div class="left">
+                    <p>Booking Details</p>
+                    <form>
+                        <fieldset>
+                            <legend>User Profile</legend>
+                                <label> Fullname:</label>
+                                <input type="text "  placeholder="Enter your full name" required>
+                                <label>Phone number:</label>
+                                <input type="number" placeholder="Enter phone number" required >
+                                <label>Email:</label>
+                                <input type="text"  placeholder="Enter email address">
+                        </fieldset>
+                        <fieldset>
+                            <legend> Journery Details </legend>
+                                <label for="destination">Destination:</label>
+                                <input type="text" name="pickup location" placeholder="e.g., City Campus" required>
+                                <label for="purpose">Purpose of journery: </label>
+                                <input type="textarea" name="purpose" required  placeholder="Educational/Personal" ><br>
+                                <label for="passengers">Capacity(number of passengers): </label>
+                                <input type="number" min="1" name="passengers"  required><br>
+                                <label for="date">Date required:</label> 
+                                <input type="date" name="date" required>
+                                <label for="date back">Date expected back:</label> 
+                                <input type="date" name="date back" required><br>
+                                <label for="time">Time required: </label>
+                                <input type="time" name="time"  required>
+                                <label for="time back">Time expected back: </label>
+                                <input type="time" name="time back"  required><br>
+
+                                <button type="reset" name="clear">Clear</button>
+                                <button type="submit" name="save">Book Now</button>
+                        </fieldset>
+
+                    
+                    </form>
+                </div><hr>
+
+                <hr><div class="right">
+            
+                        <p class="status">
+                            available
+
+                        </p>
+                        <p class="status" >
+                        not available
+                        </p>
+                        <p class="status">
+                         Booking cancelled
+                        </p>
+                    </div><hr>
+                </div><hr>
+        
+    </body>
+	
+    
+</html>
