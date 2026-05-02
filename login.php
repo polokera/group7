@@ -7,6 +7,29 @@
             <link rel="stylesheet" href="main.css">
     </head>
     <body>
+        
+        <?php
+            if(isset($_POST["login"])) {
+                $email = $_POST["email"];
+                $password = $_POST["password"];
+
+                require_once "connect.php";
+
+                $sql = "SELECT * FROM users WHERE email = '$email'";
+                $result = mysqli_query($conn, $sql);
+                $user = mysqli_fetch_array($result, MYSQLI_ASSOC);
+
+                if($user) {
+                    if  (password_verify($password, $user["password"] ))
+                        {
+                            header("Location : Reports.php");
+                        }
+                }else {
+                    echo "<div> email does not exist </div>";
+                }
+
+                }
+            ?>
         <header class="navbar">
             <div class="logo"><img src="https://www.must.ac.mw/imgs/logo/must%20log%20black.png"
                  width="100"></div>
