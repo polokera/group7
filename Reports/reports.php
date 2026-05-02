@@ -1,19 +1,46 @@
 <?php require_once '../vendor/autoload.php';
+      use Dompdf\Dompdf;
+      ob_start();
+            $conn = mysqli_connect("localhost", "root", "", "Login");
+                        
 
-            use Dompdf\Dompdf;
+            if (isset($_GET['generate_pdf'])) {
+                $id = $_GET['generate_pdf'];
 
-            // instantiate and use the dompdf class
-            $dompdf = new Dompdf();
-            $dompdf->loadHtml('hello world');
+                $generatequery = "SELECT * FROM reports WHERE id = $id";
+                $generateresult = mysqli_query($conn, $generatequery);
+                $row = mysqli_fetch_assoc($generateresult);
 
-            // (Optional) Setup the paper size and orientation
-            $dompdf->setPaper('A4', 'landscape');
+                echo $row['requestdate'];
 
-            // Render the HTML as PDF
-            $dompdf->render();
+                if($row) {
+                    $html = "
+                    <h2> Your car report </h2>
+                    <p>Request Date: {$row['requestdate']}</p>
+                    <p>Vehicle Type: {$row['vehicletype']}</p>
+                    <p>Destination: {$row['destination']}</p>
+                    <p>Status: {$row['status']}</p>
+                    ";
+                    // instantiate and use the dompdf class
+                    $dompdf = new Dompdf();
+                    $dompdf->loadHtml($html);
 
-            // Output the generated PDF to Browser
-            $dompdf->stream();
+                    // (Optional) Setup the paper size and orientation
+                    $dompdf->setPaper('A4', 'portrait');
+
+                    // Render the HTML as PDF
+                    $dompdf->render();
+                    // Output the generated PDF to Browser
+
+                    ob_clean();
+                    $dompdf->stream();
+                    exit;
+                
+                }
+
+            }
+
+            
         ?>
 
 <!DOCTYPE html>
@@ -23,12 +50,27 @@
         <title>Reports</title>  
     </head>
     <body>
+        <script>
+            function generatePDF(id) {
+                window.location.href = "reports.php?generate_pdf=" + id;
+                console.log("Generating pdf for id:" + id);
+            }
+        </script>
         <div class="ReportBoxes">
         <div class="UsageBox">
            Member usage report 
+
+           <div class="tablescroll">
            <table>
                 <thead>
                     <tr>
+                        <?php
+
+                            $query = "SELECT id,requestdate, status, vehicletype, destination
+                            FROM reports";
+
+                            $result = mysqli_query($conn,$query);
+                        ?>
                         <th>Request Date</th>
                         <th>Destination</th>
                         <th>Vehicle Type</th>
@@ -37,15 +79,27 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>31/03/2026</td>
-                        <td>Blantyre</td>
-                        <td>Saloon</td>
-                        <td><span class="approved-status">Approved by Registrar</span></td>
-                        <td><button class="pdf-download">Download PDF Report</button></td>
-                    </tr>
+                    
+                        <?php
+                            if($result && mysqli_num_rows($result) > 0)
+                                {
+                                while ($row = mysqli_fetch_assoc($result)) {
+                                     echo "<tr>";
+                                    echo "<td>" . $row['requestdate'] . "</td>";
+                                    echo "<td>" . $row['vehicletype'] . "</td>";
+                                    echo "<td>" . $row['destination'] . "</td>";
+                                    echo "<td>" . $row['status'] . "</td>";
+                                    echo "<td>" . "<button class='pdf-download' onclick=\"generatePDF(" . $row['id'] . ")\">
+                                    Download PDF Report</button> " . "</td>";
+                                    echo "</tr>";
+                                }
+                                }
+
+                        ?>
+                   
                 </tbody>
             </table>
+            </div>
         </div>
 
         <div class= "OverviewBox">

@@ -6,6 +6,12 @@
     align-items: flex-start;
 }
 
+.tablescroll{
+   max-height: 400px; 
+   overflow-y: auto;
+   border: 1px solid white;
+}
+
 .UsageBox {
     flex: 1;
     background: white;
